@@ -51,8 +51,8 @@ An connector has different statuses and in the objects emitted in the stream API
  - `timestamp` - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in `status` or `error` occured last on the connector.
 
 
- ### Important
+### Important
 
- Do note that there is a separate `error` value. An error on a connector can be a lot of different things but when representing the information to a end user one do want to indicate that a charger _might_ not be working due to an error. 
+Do note that there is a separate `error` value. An error on a connector can be a lot of different things but when representing the information to a end user one do want to indicate that a charger _might_ not be working due to an error. 
 
- Therefor it is vise to check for `error` before `status` when presenting status of a connector.
+Therefor it is vise to check for `error` before `status` when presenting status of a connector.
