@@ -46,6 +46,6 @@ An connector has different statuses and in the objects emitted in the stream API
 }
 ```
 
- - 'status' - Holds status of the connector represented as integers. -1 indicate a unknown status. 0 indicate that the connector is available. 1 indicate that the connector is occupied.
- - 'error' - Holds an error status on the connector represented as integers. 0 indicate no error. 1 indicate that there is an error on the connector.
- - 'timestamp' - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in 'status' or 'error' occured last on the connector.
+ - `status` - Holds status of the connector represented as integers. -1 indicate a unknown status. 0 indicate that the connector is available. 1 indicate that the connector is occupied.
+ - `error` - Holds an error status on the connector represented as integers. 0 indicate no error. 1 indicate that there is an error on the connector.
+ - `timestamp` - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in `status` or `error` occured last on the connector.
