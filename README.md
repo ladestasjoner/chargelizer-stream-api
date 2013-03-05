@@ -8,7 +8,7 @@ The Nobil real time stream API provide status changes in electrical car chargers
 
 ## The stream API
 
-The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you as a user can connect to. When connected the API will emit events when a change of status in a chargerstation occure. Each emitted event is in the form of a JSON.
+The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you as a consumer can connect to. When connected the API will emit events when a change of status in a chargerstation occure. Each emitted event is in the form of a JSON.
 
 
 ### Connecting to the API
@@ -27,7 +27,7 @@ One do need an API key to access the steam API. The API key can be obrained xxxx
 
 ## Understanding the data model
 
-To understand the data model (JSON) emitted by the stream API one do need some knowledge of a cahrgerstation. A chargerstation has one unique ID in the Nobil database but one chargerstation can then have several power outlets.
+To understand the data model (JSON) emitted by the stream API one do need some knowledge of a chargerstation. A chargerstation has one unique ID in the Nobil database but one chargerstation can then have several power outlets.
 
 In real life it is the power outlets which is sending status changes when someone is connecting to or disconnectin from a power outlet out in the wild.
 
@@ -46,6 +46,6 @@ An connector has different statuses and in the objects emitted in the stream API
 }
 ```
 
- - status - Holds status of the connector represented as integers. -1 indicate a unknown status. 0 indicate that the connector is available. 1 indicate that the connector is occupied.
- - error - Holds an error status on the connector represented as integers. 0 indicate no error. 1 indicate that there is an error on the connector.
- - timestamp - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in status or error occured last on the connector.
+ - 'status' - Holds status of the connector represented as integers. -1 indicate a unknown status. 0 indicate that the connector is available. 1 indicate that the connector is occupied.
+ - 'error' - Holds an error status on the connector represented as integers. 0 indicate no error. 1 indicate that there is an error on the connector.
+ - 'timestamp' - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in 'status' or 'error' occured last on the connector.
