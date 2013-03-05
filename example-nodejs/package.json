@@ -1,0 +1,39 @@
+{
+    "name": "chargelizer-stream-api-example",
+    "version": "0.0.1",
+    "author": {
+        "name": "Trygve Lie",
+        "email": "post@trygve-lie.com"
+    },
+    "description": "Example of subscribing to the chargelizer real time stream api",
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ladestasjoner/chargelizer-stream-api.git"
+    },
+    "keywords": [
+        "real time",
+        "electric",
+        "car"
+    ],
+    "homepage": "http://realtime.chargelizer.com/",
+    "scripts": {
+        "start": "node ./bin/server.js"
+    },
+    "contributors": [
+        {
+            "name": "Trygve Lie",
+            "email": "post@trygve-lie.com"
+        }
+    ],
+    "engines": {
+        "node": "0.8.x"
+    },
+    "bugs": {
+        "url": "https://github.com/ladestasjoner/chargelizer-stream-api/issues"
+    },
+    "licenses": [],
+    "dependencies": {
+        "ws": "0.4.x"
+    }
+}
