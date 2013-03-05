@@ -34,7 +34,7 @@ In real life it is the power outlets which is sending status changes when someon
 A power outlet on a chargerstation usualy refered to as a connector.
 
 
-### Statuses
+### Connector status
 
 An connector has different statuses and in the objects emitted in the stream API a connector is represented like this:
 
@@ -49,3 +49,10 @@ An connector has different statuses and in the objects emitted in the stream API
  - `status` - Holds status of the connector represented as integers. -1 indicate a unknown status. 0 indicate that the connector is available. 1 indicate that the connector is occupied.
  - `error` - Holds an error status on the connector represented as integers. 0 indicate no error. 1 indicate that there is an error on the connector.
  - `timestamp` - Holds a timestamp in the format of milliseconds since the epoch. This timestamp is when a change in `status` or `error` occured last on the connector.
+
+
+ ### Important
+
+ Do note that there is a separate `error` value. An error on a connector can be a lot of different things but when representing the information to a end user one do want to indicate that a charger _might_ not be working due to an error. 
+
+ Therefor it is vise to check for `error` before `status` when presenting status of a connector.
