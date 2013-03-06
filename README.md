@@ -136,6 +136,8 @@ To find a change in status the consumer need to compare the data in this object 
 
 This object is a raw message from the chargerstations out in the street. A chargerstation does ping us with "keep alive" messages from time to time to tell us that they are alive. These messages does not alway need to contain a change in status.
 
+The object looks like this:
+
 ```javascript
 {
     type : "status:raw",
