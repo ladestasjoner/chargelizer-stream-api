@@ -76,3 +76,33 @@ The object keys has the following meaning:
 
  - `type` - A string representation of which object type the `data` parameter holds.
  - `data` - The data of the broadcasted object.
+
+
+ ### snapshot:init
+
+ When connecting to the stream API a initial event will be emitted. This event will contain an object where `type` has the value `snapshot:init`. `data` on this object is a list of all chargerstations which can deliver real time data.
+
+The object looks simmilar to this:
+
+```javascript
+{
+    type : 'snapshot:init',
+    data : [{
+        uuid : "NOR_01270",
+        connectors : [
+            {status : -1, error : 0, timestamp : -1},
+            {status : -1, error : 0, timestamp : -1},
+            {status : -1, error : 0, timestamp : -1}
+        ]
+    },
+    {
+        uuid : "NOR_01342",
+        connectors : [
+            {status : -1, error : 0, timestamp : -1}
+        ]
+    }]
+}
+``` 
+
+This is a snapshot of how the status on all chargerstation are on the time of connecting to the stream API. In the consumer end one normally will hold this information and then update this data set with the data from every `status:update`.
+
