@@ -82,7 +82,7 @@ The object keys has the following meaning:
 
 When connecting to the stream API a initial event will be emitted. This event will contain an object where `type` has the value `snapshot:init`. `data` on this object is a list of all chargerstations which can deliver real time data.
 
-The object looks simmilar to this:
+The object looks like this:
 
 ```javascript
 {
@@ -106,3 +106,27 @@ The object looks simmilar to this:
 
 This is a snapshot of how the status on all chargerstation are on the time of connecting to the stream API. In the consumer end one normally will hold this information and then update this data set with the data from every `status:update`.
 
+
+### status:update
+
+When a `status:update` object is broadcasted there is a real change in the status of a connector on a chargerstation. In other words; someone has connected or disconnected to a connector out in the street or an error on a connector has occured.
+
+The object looks like this:
+
+```javascript
+{
+    type : "status:update",
+    data : {
+        uuid : "NOR_01333",
+        connectors : [
+            {status :  0, error : 0, timestamp : 1362520099000},
+            {status : -1, error : 0, timestamp : -1},
+            {status : -1, error : 0, timestamp : -1},
+            {status : -1, error : 0, timestamp : -1},
+            {status : -1, error : 0, timestamp : -1}
+        ]
+    }
+}
+``` 
+
+To find a change in status the consumer need to compare the data in this object with the previous received values on this chargerstation. 
