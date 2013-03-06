@@ -78,9 +78,9 @@ The object keys has the following meaning:
  - `data` - The data of the broadcasted object.
 
 
- ### snapshot:init
+### snapshot:init
 
- When connecting to the stream API a initial event will be emitted. This event will contain an object where `type` has the value `snapshot:init`. `data` on this object is a list of all chargerstations which can deliver real time data.
+When connecting to the stream API a initial event will be emitted. This event will contain an object where `type` has the value `snapshot:init`. `data` on this object is a list of all chargerstations which can deliver real time data.
 
 The object looks simmilar to this:
 
