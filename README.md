@@ -130,3 +130,24 @@ The object looks like this:
 ``` 
 
 To find a change in status the consumer need to compare the data in this object with the previous received values on this chargerstation. 
+
+
+### status:raw
+
+This object is a raw message from the chargerstations out in the street. A chargerstation does ping us with "keep alive" messages from time to time to tell us that they are alive. These messages does not alway need to contain a change in status.
+
+```javascript
+{
+    type : "status:raw",
+    code : 1,
+    data : {
+        uuid        : "NOR_01333",
+        connector   : 0,
+        status      : 0,
+        error       : 0,
+        timestamp   : 1362520099000
+    }
+}
+``` 
+
+Do note that to find status changes it is recommended that one listen for the `status:update` objects. `status:update` does hold real changes from previous update.
