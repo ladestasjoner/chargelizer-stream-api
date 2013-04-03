@@ -16,7 +16,7 @@ The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you a
 One can connect to the stream API on the following URL:
 
 ```
-ws://realtime.chargelizer.com/api/v1/stream/realtime?key={private_apikey}
+ws://realtime.chargelizer.com/api/v1/stream/realtime?apikey={private_apikey}
 ```
 
 
@@ -55,7 +55,7 @@ The object keys has the following meaning:
 
 ### Important
 
-Do note that there is a separate `error` value. An error on a connector can be a lot of different things but when representing the information to a end user one do want to indicate that a charger _might_ not be working due to an error. 
+Do note that there is a separate `error` value. An error on a connector can be a lot of different things but when representing the information to a end user one do want to indicate that a charger _might_ not be working due to an error.
 
 Therefor it is vise to check for `error` before `status` when presenting status of a connector.
 
@@ -102,7 +102,7 @@ The object looks like this:
         ]
     }]
 }
-``` 
+```
 
 This is a snapshot of how the status on all chargerstation are on the time of connecting to the stream API. In the consumer end one normally will hold this information and then update this data set with the data from every `status:update`.
 
@@ -127,9 +127,9 @@ The object looks like this:
         ]
     }
 }
-``` 
+```
 
-To find a change in status the consumer need to compare the data in this object with the previous received values on this chargerstation. 
+To find a change in status the consumer need to compare the data in this object with the previous received values on this chargerstation.
 
 
 ### status:raw
@@ -150,6 +150,6 @@ The object looks like this:
         timestamp   : 1362520099000
     }
 }
-``` 
+```
 
 Do note that to find status changes it is recommended that one listen for the `status:update` objects. `status:update` does hold real changes from previous update.
