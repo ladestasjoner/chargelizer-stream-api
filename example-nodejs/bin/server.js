@@ -14,7 +14,7 @@ var WebSocket = require('ws');
 var connection = function() {
 
     // Set up a WebSocket connection to the real time server
-    var client = new WebSocket('ws://realtime.chargelizer.com/api/v1/stream/realtime');
+    var client = new WebSocket('ws://realtime.chargelizer.com/api/v1/stream?apikey={private_apikey}');
 
 
     // Message emitted on connection to the stream api
