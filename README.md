@@ -16,7 +16,7 @@ The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you a
 One can connect to the stream API on the following URL:
 
 ```
-ws://realtime.chargelizer.com/api/v1/stream/realtime?apikey={private_apikey}
+ws://realtime.chargelizer.com/api/v1/stream?apikey={private_apikey}
 ```
 
 
