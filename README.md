@@ -22,7 +22,7 @@ ws://realtime.chargelizer.com/api/v1/stream?apikey={private_apikey}
 
 ### Obtaining an API key
 
-One do need an API key to access the steam API. The API key can be obrained xxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx
+One do need an API key to access the steam API. The [API key can be obrained from Nobil](http://nobil.no/index.php/bruk-use-api).
 
 
 ## Understanding the data model
