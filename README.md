@@ -13,10 +13,33 @@ The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you a
 
 ### Connecting to the API
 
-One can connect to the stream API on the following URL:
+There is two ways to connect to the stream API. By connecting directly to the stream API with a WebSocket client or having the stream API call back to the consumer.
+
+
+#### Connecting with a WebSocket client
+
+This is the prefered way to connect to the stream API. The consumer implements a standard WebSocket client which can connect to the stream API. The client then has to connect to the stream API on the following URL:
 
 ```
 ws://realtime.chargelizer.com/api/v1/stream?apikey={private_apikey}
+```
+
+#### Having the stream API calling back
+
+There are WebSocket server implementations for most languages out there. Sadly there at not that many server side clients. For platforms which does not have a WebSocket client the steam API can be used to ping back to a WebSocket server run by the consumer.
+
+Connection to the consumers WebSocket server is established by doing a `GET` to the stream API with a URL to the consumers WebSocket server which the stream API can connect to. When the stream API get such a request it will try to establish a WebSocket connection on the provided URL.
+
+The `GET` request is done to the following URL:
+
+```
+http://realtime.chargelizer.com/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_websocket_server}
+```
+
+The URL to the WebSocket server must contain the protocol. Example:
+
+```
+http://realtime.chargelizer.com/api/v1/stream/pingback?apikey=1234&url=ws://ws.foo.com
 ```
 
 
@@ -31,12 +54,12 @@ To understand the data model of the broadcasted objects, one do need some knowle
 
 In real life it is the power outlets which is sending status changes when someone is connecting to or disconnectin from a power outlet out in the wild.
 
-A power outlet on a chargerstation usualy refered to as a connector.
+A power outlet on a chargerstation is refered to as a connector.
 
 
 ### Connector status
 
-An connector has different statuses and in the objects a connector is represented like this:
+An connector has different statuses and in the objects provided by the stream API a connector is represented like this:
 
 ```javascript
 {
@@ -59,6 +82,28 @@ Do note that there is a separate `error` value. An error on a connector can be a
 
 Therefor it is vise to check for `error` before `status` when presenting status of a connector.
 
+
+### Chargerstation status
+
+A chargerstation can contain several connectors and the status of a chargerstation is caclulated by looking at the status of each connector. As an example; if all connectors are in use at a chargerstation the chargerstation if occupied. There is no more room for others to charge. But, if the chargerstation has four connectors and two connectors are in use, there is still two connectors free. In this case the chargerstation is looked upon as available.
+
+The stream API provide a object variable for convenience which holds a value indication the status of the whole chargerstation.
+
+A chargerstation object looks like this:
+
+```javascript
+ {
+    uuid : "NOR_01333",
+    status : -1,
+    connectors : []
+}
+```
+
+The object keys has the following meaning:
+
+ - `uuid` - A unique identifier for each chargerstation
+ - `status` - Holds a status for the whole chargerstation based on the status of each connector. -1 is unknown (one or more connectors has the status unknown). 0 is available (one or more connectors are free). 1 is occupied (all connectors are occupied). 2 is error (one or more connectors reports an status error).
+ - `connectors` - An array holding a status object for each connector. See connector statuses above.
 
 
 ## Broadcasted objects
@@ -118,6 +163,7 @@ The object looks like this:
     type : "status:update",
     data : {
         uuid : "NOR_01333",
+        status : -1,
         connectors : [
             {status :  0, error : 0, timestamp : 1362520099000},
             {status : -1, error : 0, timestamp : -1},

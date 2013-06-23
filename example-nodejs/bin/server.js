@@ -3,7 +3,7 @@
 "use strict";
 
 
-// Import web socket module
+// Import WebSocket module
 
 var WebSocket = require('ws');
 
