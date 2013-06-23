@@ -3,21 +3,22 @@
 "use strict";
 
 
+// Import http and WebSocket module
+
 var http            = require('http'),
-    WebSocketServer = require('ws').Server,
-    options = {
-        host: 'realtime.chargelizer.com',
-        port: '80',
-        path: '/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_websocket_server}'
-    };
+    WebSocketServer = require('ws').Server;
 
 
 
-// Simple Web Socket server
+// Set up a simple WebSocket server on port 8080.
+// This is the server the stream api will connect to.
+
 var wss = new WebSocketServer({port: 8080});
 
 wss.on('connection', function(ws) {
     console.log('web socket connection established');
+
+    // Messages from the stream api will occur here
 
     ws.on('message', function(message) {
         console.log(message);
@@ -26,10 +27,17 @@ wss.on('connection', function(ws) {
 
 
 
-// Ping real time server
+// Ping the stream api with apikey and where the WebSocket
+// server it should connect to is.
 
-http.get(options, function(res) {
+http.get({
+        host: 'realtime.chargelizer.com',
+        port: '80',
+        path: '/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_this_websocket_server}'
+    }, function(res) {
+
     console.log("got http response: " + res.statusCode);
+
 }).on('error', function(e) {
     console.log("got http error: " + e.message);
 });
