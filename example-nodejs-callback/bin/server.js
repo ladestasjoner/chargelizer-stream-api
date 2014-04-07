@@ -31,7 +31,7 @@ wss.on('connection', function(ws) {
 // server it should connect to is.
 
 http.get({
-        host: 'realtime.chargelizer.com',
+        host: 'realtime.nobil.no',
         port: '80',
         path: '/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_this_websocket_server}'
     }, function(res) {

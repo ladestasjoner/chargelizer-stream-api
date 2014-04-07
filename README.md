@@ -21,7 +21,7 @@ There is two ways to connect to the stream API. By connecting directly to the st
 This is the prefered way to connect to the stream API. The consumer implements a standard WebSocket client which can connect to the stream API. The client then has to connect to the stream API on the following URL:
 
 ```
-ws://realtime.chargelizer.com/api/v1/stream?apikey={private_apikey}
+ws://realtime.nobil.no/api/v1/stream?apikey={private_apikey}
 ```
 
 #### Having the stream API calling back
@@ -33,13 +33,13 @@ Connection to the consumers WebSocket server is established by doing a `GET` to 
 The `GET` request is done to the following URL:
 
 ```
-http://realtime.chargelizer.com/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_websocket_server}
+http://realtime.nobil.no/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_websocket_server}
 ```
 
 The URL to the WebSocket server must contain the protocol. Example:
 
 ```
-http://realtime.chargelizer.com/api/v1/stream/pingback?apikey=1234&url=ws://ws.foo.com
+http://realtime.nobil.no/api/v1/stream/pingback?apikey=1234&url=ws://ws.foo.com
 ```
 
 
