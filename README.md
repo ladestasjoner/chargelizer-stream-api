@@ -11,12 +11,7 @@ The Nobil real time stream API provide status changes in electrical car chargers
 The stream API consist of a [Web Socket](http://www.w3.org/TR/websockets/) you as a consumer can connect to. The stream API will broadcast JSON objects which can be accessed on the `message` event of the Web Socket.
 
 
-### Connecting to the API
-
-There is two ways to connect to the stream API. By connecting directly to the stream API with a WebSocket client or having the stream API call back to the consumer.
-
-
-#### Connecting with a WebSocket client
+### Connecting with a WebSocket client
 
 This is the prefered way to connect to the stream API. The consumer implements a standard WebSocket client which can connect to the stream API. The client then has to connect to the stream API on the following URL:
 
@@ -24,28 +19,13 @@ This is the prefered way to connect to the stream API. The consumer implements a
 ws://realtime.nobil.no/api/v1/stream?apikey={private_apikey}
 ```
 
-#### Having the stream API calling back
-
-There are WebSocket server implementations for most languages out there. Sadly there at not that many server side clients. For platforms which does not have a WebSocket client the steam API can be used to ping back to a WebSocket server run by the consumer.
-
-Connection to the consumers WebSocket server is established by doing a `GET` to the stream API with a URL to the consumers WebSocket server which the stream API can connect to. When the stream API get such a request it will try to establish a WebSocket connection on the provided URL.
-
-The `GET` request is done to the following URL:
-
-```
-http://realtime.nobil.no/api/v1/stream/pingback?apikey={private_apikey}&url={url_to_websocket_server}
-```
-
-The URL to the WebSocket server must contain the protocol. Example:
-
-```
-http://realtime.nobil.no/api/v1/stream/pingback?apikey=1234&url=ws://ws.foo.com
-```
-
 
 ### Obtaining an API key
 
 One do need an API key to access the steam API. The [API key can be obrained from Nobil](http://nobil.no/index.php/bruk-use-api).
+
+The stream API is not intended to be accessed directly from endusers such as and user facing web applications etc since this will
+expose your API key to the public.
 
 
 ## Understanding the data model
